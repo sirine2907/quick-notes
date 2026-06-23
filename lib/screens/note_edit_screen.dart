@@ -116,6 +116,14 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
       },
       child: Scaffold(
         appBar: AppBar(),
+        floatingActionButton: FloatingActionButton(
+          heroTag: 'fab',
+          onPressed: () async {
+            await _save();
+            if (context.mounted) Navigator.pop(context);
+          },
+          child: const Icon(Icons.check),
+        ),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
           child: Column(

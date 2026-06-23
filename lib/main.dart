@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'screens/notes_list_screen.dart';
 
@@ -14,11 +15,24 @@ class QuickNotesApp extends StatelessWidget {
     return MaterialApp(
       title: 'Quick Notes',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: _buildTheme(Brightness.light),
+      darkTheme: _buildTheme(Brightness.dark),
+      themeMode: ThemeMode.system,
       home: const NotesListScreen(),
     );
   }
+}
+
+ThemeData _buildTheme(Brightness brightness) {
+  final base = ThemeData(
+    useMaterial3: true,
+    brightness: brightness,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: const Color(0xFF6366F1),
+      brightness: brightness,
+    ),
+  );
+  return base.copyWith(
+    textTheme: GoogleFonts.nunitoTextTheme(base.textTheme),
+  );
 }
